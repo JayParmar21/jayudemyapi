@@ -28,7 +28,8 @@ const userRoute = require('./router/userRouter');
 const categoryRoute = require('./router/categoryRouter');
 const subcategoryRoute = require('./router/subCategoryRouter')
 const courseRoute = require('./router/courseRouter');
-//const courseRoute = require('./router/courseRouter');
+const chapterRoute = require('./router/chapterRouter');
+
 
 
 // app.use('/images', express.static(ImageDir));
@@ -44,7 +45,7 @@ app.use('/user', userRoute);
 app.use('/category', categoryRoute);
 app.use('/subcategory',subcategoryRoute)
 app.use('/course', courseRoute);
-
+app.use('/chapter',chapterRoute)
 
 
 
