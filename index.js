@@ -29,6 +29,7 @@ const categoryRoute = require('./router/categoryRouter');
 const subcategoryRoute = require('./router/subCategoryRouter')
 const courseRoute = require('./router/courseRouter');
 const chapterRoute = require('./router/chapterRouter');
+const cartRoute = require('./router/cartRouter');
 
 
 
@@ -45,7 +46,8 @@ app.use('/user', userRoute);
 app.use('/category', categoryRoute);
 app.use('/subcategory',subcategoryRoute)
 app.use('/course', courseRoute);
-app.use('/chapter',chapterRoute)
+app.use('/chapter',chapterRoute);
+app.use('/cart', cartRoute);
 
 
 
