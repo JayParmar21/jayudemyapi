@@ -19,6 +19,10 @@ const Course = db.define('course', {
         type: Sequelize.STRING,
         allowNull: false
     },
+    rupee: {
+        type: Sequelize.INTEGER,
+        allowNull: false
+    },
     catId: {
         type: Sequelize.INTEGER,
         allowNull: false

@@ -15,7 +15,7 @@ exports.post = (body, done) => {
 exports.getByUserId = (id, done) => {
     Cart.findOne({ where: { userId: id } }).then((getCart) => {
         if (getCart) {
-            db.query("select carts.*,courses.coursename,courses.courseImage,categories.name as categoryname,subcategories.name as subcategoryname from courses,categories,subcategories,carts where carts.isDelete = 0 && carts.isBought = 0 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && carts.userId = " + id, { type: Sequelize.QueryTypes.SELECT })
+            db.query("select carts.*,courses.coursename,courses.rupee,courses.courseImage,categories.name as categoryname,subcategories.name as subcategoryname from courses,categories,subcategories,carts where carts.isDelete = 0 && carts.isBought = 0 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && carts.userId = " + id, { type: Sequelize.QueryTypes.SELECT })
                 .then((cart) => {
                     done(null, cart)
                 }).catch((err) => {
@@ -49,7 +49,7 @@ exports.BuyCourse = (id, done) => {
 exports.getBoughtCourseByUserId = (id, done) => {
     Cart.findOne({ where: { userId: id } }).then((getCart) => {
         if (getCart) {
-            db.query("select carts.*,courses.coursename,courses.courseImage,courses.description,categories.name as categoryname,subcategories.name as subcategoryname from courses,categories,subcategories,carts where carts.isDelete = 0 && carts.isBought = 1 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && carts.userId = " + id, { type: Sequelize.QueryTypes.SELECT })
+            db.query("select carts.*,courses.coursename,courses.rupee,courses.courseImage,courses.description,categories.name as categoryname,subcategories.name as subcategoryname from courses,categories,subcategories,carts where carts.isDelete = 0 && carts.isBought = 1 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && carts.userId = " + id, { type: Sequelize.QueryTypes.SELECT })
                 .then((cart) => {
                     done(null, cart)
                 }).catch((err) => {

@@ -30,7 +30,7 @@ const subcategoryRoute = require('./router/subCategoryRouter')
 const courseRoute = require('./router/courseRouter');
 const chapterRoute = require('./router/chapterRouter');
 const cartRoute = require('./router/cartRouter');
-
+const ratingsRoute= require('./router/ratingsRouter')
 
 
 // app.use('/images', express.static(ImageDir));
@@ -44,10 +44,11 @@ app.use('/document', express.static(DocumentDir));
 //routes for routers
 app.use('/user', userRoute);
 app.use('/category', categoryRoute);
-app.use('/subcategory',subcategoryRoute)
+app.use('/subcategory', subcategoryRoute)
 app.use('/course', courseRoute);
-app.use('/chapter',chapterRoute);
+app.use('/chapter', chapterRoute);
 app.use('/cart', cartRoute);
+app.use('/rate',ratingsRoute);
 
 
 
