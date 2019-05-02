@@ -33,10 +33,9 @@ const cartRoute = require('./router/cartRouter');
 const ratingsRoute= require('./router/ratingsRouter')
 
 
-// app.use('/images', express.static(ImageDir));
+
 app.use('/courseImage', express.static(CourseImageDir));
 app.use('/thumbnail', express.static(ThumbnailImageDir));
-// app.use('/videos', express.static(VideoDir));
 app.use('/document', express.static(DocumentDir));
 
 

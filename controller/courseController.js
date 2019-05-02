@@ -72,14 +72,9 @@ exports.getByUserId = (id, done) => {
 }
 
 exports.deleteById = (id, done) => {
-    db.query("update videos set isDelete = 1 where courseId = " + id, { type: Sequelize.QueryTypes.UPDATE })
-        .then((remove) => {
-            db.query("update courses set isDelete = 1 where id = " + id, { type: Sequelize.QueryTypes.UPDATE })
-                .then((removeCourse) => {
-                    done(null, removeCourse)
-                }).catch((err) => {
-                    done(err)
-                })
+    db.query("update courses set isDelete = 1 where id = " + id, { type: Sequelize.QueryTypes.UPDATE })
+        .then((removeCourse) => {
+            done(null, removeCourse)
         }).catch((err) => {
             done(err)
         })
