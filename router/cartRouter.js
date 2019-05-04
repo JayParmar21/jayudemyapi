@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { post, getByUserId, deleteById, BuyCourse, getBoughtCourseByUserId } = require('../controller/cartController');
+const { post, getByUserId, deleteById, BuyCourse, getBoughtCourseByUserId, getByallUser } = require('../controller/cartController');
 
 router.post('/addToCart', (req, res, next) => {
     post(req.body, (err, result) => {
@@ -30,9 +30,8 @@ router.get('/getByUser/:userId', (req, res) => {
     })
 });
 
-router.get('/getByUser/:userId', (req, res) => {
-    const id = req.params.userId;
-    getByUserId(id, (err, result) => {
+router.get('/getBuyallUser', (req, res) => {
+    getByallUser((err, result) => {
         if (err) {
             res.statusCode = 400;
             res.json(err);
