@@ -31,7 +31,7 @@ exports.getByUserId = (id, done) => {
 exports.getByallUser = (done) => {
     Cart.findAll().then((getCart) => {
         if (getCart) {
-            db.query("select carts.*,courses.coursename,courses.rupee,courses.courseImage,courses.description,categories.name as categoryname,subcategories.name as subcategoryname,users.* from courses,categories,subcategories,carts,users where carts.isDelete = 0 && carts.isBought = 1 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && users.id=carts.userId   ", { type: Sequelize.QueryTypes.SELECT })
+            db.query("select users.id,users.fullname, users.email, GROUP_CONCAT(courses.coursename) as 'purchasedCourse', SUM(courses.rupee) as 'totalAmount' from courses,carts, users where carts.isDelete = 0 && carts.isBought = 1 && carts.courseId = courses.id && users.id = carts.userId GROUP BY users.id", { type: Sequelize.QueryTypes.SELECT })
                 .then((cart) => {
                     done(null, cart)
                 }).catch((err) => {
