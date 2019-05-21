@@ -14,7 +14,7 @@ exports.post = (body, done) => {
 
 
 exports.getAll = (done) => {
-    db.query("select courses.*,categories.name as categoryname,subcategories.name as subcategoryname from courses,categories,subcategories where courses.catId = categories.id && courses.subcatId = subcategories.id && courses.isDelete = 0", { type: Sequelize.QueryTypes.SELECT })
+    db.query("select courses.*,chapters.courseId,chapters.files,categories.name as categoryname,subcategories.name as subcategoryname, COUNT(chapters.courseId) as TotalChapter,GROUP_CONCAT(chapters.files) as lecture from courses,chapters,categories,subcategories  where courses.catId = categories.id && courses.subcatId = subcategories.id && courses.isDelete = 0 && chapters.courseId= courses.id GROUP BY chapters.courseId", { type: Sequelize.QueryTypes.SELECT })
         .then((getCourse) => {
             if (getCourse) {
                 done(null, getCourse);
