@@ -27,6 +27,18 @@ exports.getAllData = (body, done) => {
         })
 }
 
+exports.getAll = (done) => {
+    db.query("SELECT * FROM ratings", { type: Sequelize.QueryTypes.SELECT })
+        .then((getRate) => {
+            if (getRate) {
+                done(null, getRate);
+            }
+
+        }).catch((err) => {
+            done(err);
+        });
+}
+
 exports.getRatingsByUserId = (id, done) => {
     Ratings.findAll({ where: { userId: id } }).then((getRatings) => {
         if (getRatings) {

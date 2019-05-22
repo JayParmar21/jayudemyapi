@@ -65,7 +65,7 @@ exports.BuyCourse = (id, done) => {
 exports.getBoughtCourseByUserId = (id, done) => {
     Cart.findOne({ where: { userId: id } }).then((getCart) => {
         if (getCart) {
-            db.query("select carts.*,courses.coursename,courses.rupee,courses.courseImage,courses.description,categories.name as categoryname,subcategories.name as subcategoryname,users.* from courses,categories,subcategories,carts,users where carts.isDelete = 0 && carts.isBought = 1 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && users.id=carts.userId && carts.userId = " + id, { type: Sequelize.QueryTypes.SELECT })
+            db.query("select carts.*,chapters.courseId,chapters.files,courses.coursename,courses.rupee,courses.courseImage,courses.description,categories.name as categoryname,subcategories.name as subcategoryname,users.*,COUNT(chapters.courseId) as TotalChapter,GROUP_CONCAT(chapters.files) as lecture from courses,chapters,categories,subcategories,carts,users where carts.isDelete = 0 && carts.isBought = 1 && courses.catId = categories.id && courses.subcatId = subcategories.id && carts.courseId = courses.id && users.id=carts.userId && carts.userId = " + id + "&& chapters.courseId= courses.id GROUP BY chapters.courseId", { type: Sequelize.QueryTypes.SELECT })
                 .then((cart) => {
                     done(null, cart)
                 }).catch((err) => {

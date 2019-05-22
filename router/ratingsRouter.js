@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const router = Router();
 
-const { getRatingsByUserId, getAllData, updateCourseRatings, getRatingsByCourseId } = require('../controller/ratingsController');
+const { getRatingsByUserId, getAllData, updateCourseRatings, getRatingsByCourseId,getAll } = require('../controller/ratingsController');
 
 router.post('/addRatings', (req, res, next) => {
     getAllData(req.body, (err, result) => {
@@ -37,6 +37,19 @@ router.post('/addRatings', (req, res, next) => {
 router.get('/ratings/:userId', (req, res) => {
     const id = req.params.userId;
     getRatingsByUserId(id, (err, result) => {
+        if (err) {
+            res.statusCode = 400;
+            res.json(err);
+        }
+        else {
+            res.statusCode = 200;
+            res.json(result);
+        }
+    })
+});
+
+router.get('/allrate', (req, res) => {
+    getAll((err, result) => {
         if (err) {
             res.statusCode = 400;
             res.json(err);
