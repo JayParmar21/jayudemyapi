@@ -52,7 +52,7 @@ router.get('/getCourse/:courseId', (req, res) => {
     const id = req.params.courseId;
     getCourseById(id, (err, result) => {
         if (err) {
-            res.statusCode = 400;
+            // res.statusCode = 400;
             res.json(err);
         }
         else {

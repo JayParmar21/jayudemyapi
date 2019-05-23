@@ -23,7 +23,8 @@ exports.getByUserId = (id, done) => {
                 })
         }
         else {
-            done({ message: "Id not found!!" })
+            let data = []
+            done(null, data)
         }
     })
 }
@@ -73,7 +74,8 @@ exports.getBoughtCourseByUserId = (id, done) => {
                 })
         }
         else {
-            done({ message: "Id not found!!" })
+            let data = []
+            done(null, data)
         }
     })
 }
